@@ -1,0 +1,15 @@
+ [
+    {
+        "page": ".html"
+    }, {
+        "page": "/services.html"
+    }, {
+        "page": "/products.html"
+    }, {
+        "page": "/support.html"
+    }, {
+        "page": "/company.html"
+    },{
+        "page": "/events.html"
+    }
+]
