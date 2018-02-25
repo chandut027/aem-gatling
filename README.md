@@ -14,10 +14,14 @@ Gatling is a Scala based open-source load test tool which utilises asynchronous 
 ### Available tests
 
 1. LoadTestOnlyHtmls 
+	
 	a. will load test only given urls
+	
 	b. This hits ur dispatcher url
 2. LoadTestAllResources
+
 	a. will load test current urls along with sub resource like css,js, images .. except child htmls..
+	
 	b. This hits ur domain url
 
 ### Available environments
