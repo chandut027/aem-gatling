@@ -13,7 +13,7 @@ import io.gatling.http.action.sync.HttpRequestActionBuilder
 import io.gatling.core.structure.ChainBuilder
 import scala.Vector
 
-class LoadNoResTest extends Simulation {
+class LoadTestAllResources extends Simulation {
 
   /* get maven args. and assign to vars */
   val env = System.getProperty("env")
@@ -31,7 +31,7 @@ class LoadNoResTest extends Simulation {
   val parsedConfig = ConfigFactory.parseFile(new File("src/test/resources/" + env + ".conf"))
   val conf = ConfigFactory.load(parsedConfig)
   
-  var baseUrl = conf.getString("load.dispatcherUrl") + conf.getString("load.basePath") 
+  var baseUrl = conf.getString("load.domain") + conf.getString("load.basePath") 
 
   println(s"domain :  $baseUrl")
 		  
@@ -54,7 +54,7 @@ class LoadNoResTest extends Simulation {
 
 
    val httpProtocol = http
-    .baseURL(baseUrl).inferHtmlResources(WhiteList(""".*\.html""")).disableCaching
+    .baseURL(baseUrl).inferHtmlResources(BlackList(""".*\.html""")).disableCaching
     
   val execution = scnItems
     .inject(rampUsers(users) over duration)
