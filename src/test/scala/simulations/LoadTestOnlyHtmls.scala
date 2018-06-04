@@ -35,19 +35,16 @@ class LoadTestOnlyHtmls extends Simulation {
 
   println(s"domain :  $baseUrl")
 		  
-  val locales = jsonFile("locales.json")
   val pages = jsonFile("pages.json")
   var count = 0;
   var httpLists = new ListBuffer[ChainBuilder]()
-  for (localeNum <- 0 to locales.records.size -1) { 
 	  for (pageNum <- 0 to pages.records.size -1) { 
 		  count +=1
-		  val path = ""+locales.records(localeNum)("locale") + pages.records(pageNum)("page")+ "?skipCache=true"
+		  val path = "" + pages.records(pageNum)("page")+ "?skipCache=true"
 		  println(s"url$count :  $path")
 		  httpLists += exec(http("Page: " + pages.records(pageNum)("page")).get(path))
 	  }
-	}
-  val users = (userPerSec * duration) / (locales.records.size * pages.records.size)
+  val users = (userPerSec * duration) / ( pages.records.size)
   println(s"users :  $users")
   val scnItems = scenario("My Scenari").exec(httpLists.toList)
   
@@ -59,8 +56,8 @@ class LoadTestOnlyHtmls extends Simulation {
   val execution = scnItems
     .inject(rampUsers(users) over duration)
   setUp(execution).protocols(httpProtocol).assertions(
-    global.responseTime.max.lt(5000),
-    global.responseTime.mean.lt(800),
+    global.responseTime.max.lt(500),
+    global.responseTime.mean.lt(100),
     global.successfulRequests.percent.gt(95))
 
 }
