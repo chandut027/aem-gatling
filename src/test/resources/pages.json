@@ -1,15 +1,13 @@
  [
     {
-        "page": ".html"
+        "page": "/ex-admin/KRAKEN"
     }, {
-        "page": "/services.html"
+        "page": "/ex-admin/BITSTAMP"
     }, {
-        "page": "/products.html"
+        "page": "/account-product/accounts/"
     }, {
-        "page": "/support.html"
+        "page": "/account-product/api?format=json"
     }, {
-        "page": "/company.html"
-    },{
-        "page": "/events.html"
+        "page": "/ex-admin/api?format=json"
     }
 ]
